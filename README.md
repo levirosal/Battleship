@@ -15,7 +15,7 @@ Repository of the multiplayer battleship game developed in java.
 
     --p1-name=
     
-   File path with ship locations.        
+   File path with ship locations:        
     
     --p1-file=
    
