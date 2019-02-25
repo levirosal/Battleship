@@ -14,18 +14,22 @@ import java.util.Scanner;
  */
 public class Game {
     private List<String> locations1;
+    private String nameP1;
+    private String nameP2;
     private List<String> locations2;
     private static final String alphabet = "abcdefg";
 
     /**
      * Sets player and location of ship.
      */
-    public Game() {
-        locations1 = reader(1);
-        locations2 = reader(2);
+    public Game(String name1, String locFile1, String name2, String locFile2) {
+        locations1 = reader(locFile1);
+        locations2 = reader(locFile2);
+        nameP1 = name1;
+        nameP2 = name2;
 
-        System.out.println("Location Player 1: " + locations1);  // Show location ship.
-        System.out.println("Location Player 2: " + locations2);  // Show location ship.
+        System.out.println("Location " + nameP1 + ": " + locations1);  // Show location ship.
+        System.out.println("Location " + nameP2 + ": " + locations2);  // Show location ship.
     }
 
     /**
@@ -34,6 +38,14 @@ public class Game {
      */
     public List<String> getLocations1() {
         return locations1;
+    }
+
+    public String getNameP1() {
+        return nameP1;
+    }
+
+    public String getNameP2() {
+        return nameP2;
     }
 
     /**
@@ -46,17 +58,13 @@ public class Game {
 
     /**
      * Reads file and insert locations.
-     * @param player Player.
+     * @param file Location of file.
      * @return List of locations.
      */
-    public List<String> reader(final int player) {
-        Scanner in = new Scanner(System.in);
+    public List<String> reader(String file) {
         List<String> alphaCells = new ArrayList<>();
         int line = 0;
         String temp;
-
-        System.out.print("Insert file location of Player " + player + ": ");
-        String file = in.nextLine();
 
         try {
             FileReader arq = new FileReader(file);

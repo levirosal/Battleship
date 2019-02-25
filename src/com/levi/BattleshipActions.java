@@ -11,6 +11,8 @@ import java.util.*;
 public class BattleshipActions {
     private List<String> locations1;
     private List<String> locations2;
+    private String nameP1;
+    private String nameP2;
 
 
     /**
@@ -40,6 +42,14 @@ public class BattleshipActions {
         } else {
             locations1.remove(location);
         }
+    }
+
+    public void setNameP1(String nameP1) {
+        this.nameP1 = nameP1;
+    }
+
+    public void setNameP2(String nameP2) {
+        this.nameP2 = nameP2;
     }
 
     /**
@@ -100,7 +110,13 @@ public class BattleshipActions {
      * Shows the result of game.
      */
     public void finish(final int player) {
+        String name;
+        if(player == 1) {
+            name = nameP1;
+        } else {
+            name = nameP2;
+        }
         System.out.println("All ships are dead !!!");
-        System.out.println("Player " + player + " Wins !!!");
+        System.out.println(name + " Wins !!!");
     }
 }

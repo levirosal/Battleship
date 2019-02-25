@@ -36,7 +36,12 @@ File path with ship locations:
 Name of player 2:
 
     --p1-name=
+<<<<<<< HEAD
 File path with ship locations:        
+=======
+    
+   File path with ship locations:        
+>>>>>>> b9dfa5055c382dfa31169d7bb71d6f25caf024d8
     
     --p1-file=
    
