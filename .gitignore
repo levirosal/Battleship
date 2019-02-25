@@ -1,6 +1,7 @@
 *.class
 *.idea
 *.iml
+*.txt
 BattleshipV3/out
 BattleshipV3/javadoc
 

@@ -8,12 +8,7 @@ package com.levi;
  */
 public class BattleshipApplication {
     /**
-     * Starts the game
-     * Parameters:
-     * --p1-name=
-     * --p1-file=
-     * --p2-name=
-     * --p2-file=
+     * Gets names and locations of files and starts the game.
      */
     public static void main(String[] args) {
         BattleshipLaunch game = new BattleshipLaunch();

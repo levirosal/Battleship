@@ -13,8 +13,14 @@ public class BattleshipLaunch {
   Game game;
   private List<String> locations1;
   private List<String> locations2;
+
+
   /**
-   * Creates new game.
+   * Create a new game.
+   * @param nameP1 Name of player 1.
+   * @param locFile1 Location of ships of player 1.
+   * @param nameP2 Name of player 2.
+   * @param locFile2 Location of ships of player 2.
    */
   public void launch(String nameP1, String locFile1, String nameP2, String locFile2){
     System.out.println("\nYour goal is to sink enemy ships.");
@@ -29,19 +35,16 @@ public class BattleshipLaunch {
 
     game = new Game(nameP1, locFile1, nameP2, locFile2);
 
-    actions.setNameP1(nameP1);
-    actions.setNameP1(nameP1);
-
     locations1 = game.getLocations1();
     locations2 = game.getLocations2();
   }
-
 
   /**
    * Calls the method to insert your shot and method to check guess
    */
   public void start() {
     String userGuess;
+    String name;
     int player = 0;
 
     actions.setLocations1(locations1);
@@ -49,20 +52,23 @@ public class BattleshipLaunch {
 
     while (true) {
       player = 1;
-      System.out.println("\n" + game.getNameP1());
+
+      System.out.print("\n" +  game.getNameP1());
       userGuess = actions.getUserInput();
+
       if (actions.checkShot(player, userGuess).equals("kill")) {
+        name = game.getNameP1();
         break;
       }
 
       player = 2;
-      System.out.println("\n" + game.getNameP2());
+      System.out.print("\n" + game.getNameP2());
       userGuess = actions.getUserInput();
       if (actions.checkShot(player, userGuess).equals("kill")) {
+        name = game.getNameP2();
         break;
       }
     }
-    actions.finish(player);
-
+    game.finish(name);
   }
 }

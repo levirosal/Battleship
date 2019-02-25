@@ -11,9 +11,6 @@ import java.util.*;
 public class BattleshipActions {
     private List<String> locations1;
     private List<String> locations2;
-    private String nameP1;
-    private String nameP2;
-
 
     /**
      * Sets locations of player 1 ships.
@@ -44,14 +41,6 @@ public class BattleshipActions {
         }
     }
 
-    public void setNameP1(String nameP1) {
-        this.nameP1 = nameP1;
-    }
-
-    public void setNameP2(String nameP2) {
-        this.nameP2 = nameP2;
-    }
-
     /**
      * Returns locations of ship.
      * @param player Player
@@ -70,7 +59,7 @@ public class BattleshipActions {
      */
     public String getUserInput() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter the location of your shot: ");
+        System.out.println(", enter the location of your shot: ");
         String inputLine = in.nextLine();
 
         if (inputLine.length() == 0){
@@ -90,14 +79,15 @@ public class BattleshipActions {
 
         if(getLocations(player).contains(userGuess)) {
             result = "hit";
-            System.out.println("You HIT !!!\n");
             removeLocation(player, userGuess);
+            if(getLocations(player).size() == 0) {
+                result = "kill";
+                System.out.println("YOU DESTROYED !!!\n");
+            } else {
+                System.out.println("You HIT !!!\n");
+            }
         }
 
-        if(getLocations(player).size() == 0) {
-            result = "kill";
-            System.out.println("YOU DESTROYED !!!\n");
-        }
 
         if(result.equals("miss")) {
             System.out.println("You missed the shot.\n");
@@ -106,17 +96,4 @@ public class BattleshipActions {
         return result;
     }
 
-    /**
-     * Shows the result of game.
-     */
-    public void finish(final int player) {
-        String name;
-        if(player == 1) {
-            name = nameP1;
-        } else {
-            name = nameP2;
-        }
-        System.out.println("All ships are dead !!!");
-        System.out.println(name + " Wins !!!");
-    }
 }

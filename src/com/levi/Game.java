@@ -5,7 +5,7 @@ import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+
 /**
  * Creates ships and reads locations files.
  * @version 3.0
@@ -14,13 +14,18 @@ import java.util.Scanner;
  */
 public class Game {
     private List<String> locations1;
+    private List<String> locations2;
     private String nameP1;
     private String nameP2;
-    private List<String> locations2;
     private static final String alphabet = "abcdefg";
+
 
     /**
      * Sets player and location of ship.
+     * @param name1 Name of player 1.
+     * @param locFile1 Location of ships of player 1.
+     * @param name2 Name of player 2.
+     * @param locFile2 Location of ships of player 2.
      */
     public Game(String name1, String locFile1, String name2, String locFile2) {
         locations1 = reader(locFile1);
@@ -28,8 +33,8 @@ public class Game {
         nameP1 = name1;
         nameP2 = name2;
 
-        System.out.println("Location " + nameP1 + ": " + locations1);  // Show location ship.
-        System.out.println("Location " + nameP2 + ": " + locations2);  // Show location ship.
+        System.out.println("Location " + nameP1 + ": " + locations1);  // Show locations of ships.
+        System.out.println("Location " + nameP2 + ": " + locations2);  // Show locations of ships.
     }
 
     /**
@@ -40,20 +45,28 @@ public class Game {
         return locations1;
     }
 
-    public String getNameP1() {
-        return nameP1;
-    }
-
-    public String getNameP2() {
-        return nameP2;
-    }
-
     /**
-     * Returns locations of player2 ships.
+     * Returns locations of player 2 ships.
      * @return List - List of locations.
      */
     public List<String> getLocations2() {
         return locations2;
+    }
+
+    /**
+     * Returns name of player 1.
+     * @return String - Name of player 1.
+     */
+    public String getNameP1() {
+        return nameP1;
+    }
+
+    /**
+     * Returns name of player 2.
+     * @return String - Name of player 2.
+     */
+    public String getNameP2() {
+        return nameP2;
     }
 
     /**
@@ -62,7 +75,7 @@ public class Game {
      * @return List of locations.
      */
     public List<String> reader(String file) {
-        List<String> alphaCells = new ArrayList<>();
+        List<String> locations = new ArrayList<>();
         int line = 0;
         String temp;
 
@@ -76,7 +89,7 @@ public class Game {
                 for (int i = 0; i < linha.length(); i++){
                     if(linha.charAt(i) == '1'){
                         temp = String.valueOf(alphabet.charAt(line));
-                        alphaCells.add(temp.concat(Integer.toString(i)));
+                        locations.add(temp.concat(Integer.toString(i)));
                     }
                 }
                 linha = lerArq.readLine();
@@ -89,7 +102,15 @@ public class Game {
             System.err.println("Error opening file: " + e.getLocalizedMessage());
         }
 
-        return alphaCells;
+        return locations;
+    }
+
+    /**
+     * Shows the result of game.
+     */
+    public void finish(final String name) {
+        System.out.println("All ships are dead !!!");
+        System.out.println(name + " Wins !!!");
     }
 
 }
