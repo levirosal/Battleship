@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 
 public class GameTest {
     Game game;
-    private List<String> locations1;
-    private List<String> locations2;
+    private List<String> locations1 = new ArrayList<>();;
+    private List<String> locations2 = new ArrayList<>(); ;
     private String nameP1;
     private String nameP2;
     private String locFile1;
@@ -31,9 +31,6 @@ public class GameTest {
 
     @Before
     public void createList() {
-        locations1 = new ArrayList<>();
-        locations2 = new ArrayList<>();
-
         locations1.add("a2");
         locations1.add("a3");
         locations1.add("a4");

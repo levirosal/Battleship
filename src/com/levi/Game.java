@@ -33,8 +33,8 @@ public class Game {
         nameP1 = name1;
         nameP2 = name2;
 
-        System.out.println("Location " + nameP1 + ": " + locations1);  // Show locations of ships.
-        System.out.println("Location " + nameP2 + ": " + locations2);  // Show locations of ships.
+//        System.out.println("Location " + nameP1 + ": " + locations1);  // Show locations of ships.
+//        System.out.println("Location " + nameP2 + ": " + locations2);  // Show locations of ships.
     }
 
     /**

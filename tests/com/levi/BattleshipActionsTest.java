@@ -32,7 +32,6 @@ public class BattleshipActionsTest {
 
         assertFalse(locations1.equals(actionsTest.getLocations(2)));
         assertFalse(locations2.equals(actionsTest.getLocations(1)));
-
     }
 
     @Test
