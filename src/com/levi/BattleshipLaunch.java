@@ -9,8 +9,11 @@ import java.util.List;
  * @author Levi Rosal
  */
 public class BattleshipLaunch {
-  BattleshipActions actions = new BattleshipActions();
-  Game game;
+  /**
+   * variable sdasdas
+   */
+  private BattleshipActions actions = new BattleshipActions();
+  private Game game;
   private List<String> locations1;
   private List<String> locations2;
 

@@ -26,7 +26,6 @@ public class GameTest {
         locFile2 = "/home/levi-ia/Documentos/github/Battleship/src/com/levi/player2.txt";
 
         game = new Game(nameP1, locFile1, nameP2, locFile2);
-
     }
 
     @Before
@@ -52,12 +51,12 @@ public class GameTest {
 
     @Test
     public void getNameP1() {
-        assertTrue(nameP1.equals(game.getNameP1()));
+        assertEquals(nameP1, game.getNameP1());
     }
 
     @Test
     public void getNameP2() {
-        assertTrue(nameP2.equals(game.getNameP2()));
+        assertEquals(nameP2, game.getNameP2());
     }
 
     @Test

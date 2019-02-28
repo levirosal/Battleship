@@ -26,12 +26,12 @@ public class BattleshipActionsTest {
     }
 
     @Test
-    public void removeLocation() {
+    public void shouldRemoveLocation() {
         actionsTest.removeLocation(1, "c2");
         actionsTest.removeLocation(2, "b2");
 
-        assertFalse(locations1.equals(actionsTest.getLocations(2)));
-        assertFalse(locations2.equals(actionsTest.getLocations(1)));
+        assertNotEquals(locations1, actionsTest.getLocations(2));
+        assertNotEquals(locations2, actionsTest.getLocations(1));
     }
 
     @Test
@@ -52,15 +52,14 @@ public class BattleshipActionsTest {
 
     @Test
     public void checkShot() {
-        assertTrue(actionsTest.checkShot(1, "b2").equals("miss"));
-        assertTrue(actionsTest.checkShot(1, "c1").equals("hit"));
-        assertTrue(actionsTest.checkShot(1, "c2").equals("hit"));
-        assertTrue(actionsTest.checkShot(1, "c3").equals("kill"));
+        assertEquals(actionsTest.checkShot(1, "b2"), ("miss"));
+        assertEquals(actionsTest.checkShot(1, "c1"), ("hit"));
+        assertEquals(actionsTest.checkShot(1, "c2"), ("hit"));
+        assertEquals(actionsTest.checkShot(1, "c3"), ("kill"));
 
-
-        assertTrue(actionsTest.checkShot(2, "c2").equals("miss"));
-        assertTrue(actionsTest.checkShot(2, "b1").equals("hit"));
-        assertTrue(actionsTest.checkShot(2, "b2").equals("hit"));
-        assertTrue(actionsTest.checkShot(2, "b3").equals("kill"));
+        assertEquals(actionsTest.checkShot(2, "c2"), ("miss"));
+        assertEquals(actionsTest.checkShot(2, "b1"), ("hit"));
+        assertEquals(actionsTest.checkShot(2, "b2"), ("hit"));
+        assertEquals(actionsTest.checkShot(2, "b3"), ("kill"));
     }
 }
