@@ -21,11 +21,25 @@ Where the columns are the numbers and the lines the letters.
     G *  *  *  *  *  *  *
       0  1  2  3  4  5  6
 
+## How to build this .jar locally.
 
+##### 1. Enter the source directory:
 
-## How to start the game
+    cd Battleship/src    
+##### 2. Run this command to compile the java code:
 
-##### 1. Execute the jar by sending these parameters:
+    javac -d ../class/ com/levi/*.java && javac -d ../class/ com/levi/model/.java
+##### 3. Enter the class directory:
+
+    cd ../class    
+##### 4. Run this command to create .jar file:
+
+    jar -cvmf manifest.txt Battleship.jar com/ 
+    
+
+## How to start the game.
+
+##### 1. Execute the jar by sending these parameters in any order:
 Name of player 1:
 
     --p1-name=    
@@ -42,3 +56,4 @@ Example:
  
     java -jar Battleship.jar --p1-name=Player1Name --p1-file=/home/github/Documents/player1.txt --p2-name=Player2Name --p2-file=/home/github/Documents/player2.txt
     
+
