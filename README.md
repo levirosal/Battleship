@@ -41,3 +41,4 @@ File path with ship locations:
 Example:
  
     java -jar Battleship.jar --p1-name=Player1Name --p1-file=/home/github/Documents/player1.txt --p2-name=Player2Name --p2-file=/home/github/Documents/player2.txt
+    

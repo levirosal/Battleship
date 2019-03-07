@@ -1,5 +1,8 @@
 package com.levi;
 
+import com.levi.model.Board;
+import com.levi.model.Player;
+
 /**
  * Main, starts the game.
  * @version 3.0
@@ -7,17 +10,30 @@ package com.levi;
  * @author Levi Rosal
  */
 public class BattleshipApplication {
+
     /**
-     * Gets names and locations of files and starts the game.
+     * Gets names and locations of files, starts and finish the game.
      */
     public static void main(String[] args) {
-        BattleshipLaunch game = new BattleshipLaunch();
-        String nameP1 = args[0].substring(10,(args[0].length()));
-        String locP1 = args[1].substring(10,(args[1].length()));
-        String nameP2 = args[2].substring(10,(args[2].length()));
-        String locP2 = args[3].substring(10,(args[3].length()));
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        for (int i = 0; i < args.length ; i++) {
+            if (args[i].substring(0, 10).equals("--p1-name=")) {
+                playerOne.setName(args[i].substring(10, args[i].length()));
+            } else if (args[i].substring(0, 10).equals("--p1-file=")) {
+                playerOne.setLocFile(args[i].substring(10, args[i].length()));
+            } else if (args[i].substring(0, 10).equals("--p2-name=")) {
+                playerTwo.setName(args[i].substring(10, args[i].length()));
+            } else if (args[i].substring(0, 10).equals("--p2-file=")) {
+                playerTwo.setLocFile(args[i].substring(10, args[i].length()));
+            }
+        }
+        Board boardOne = new Board(playerOne);
+        Board boardTwo = new Board(playerTwo);
 
-        game.launch(nameP1, locP1, nameP2, locP2);
-        game.start();
+        Game game = new Game(boardOne, boardTwo);
+        game.printTable();
+        Player winner = game.start();
+        game.finish(winner);
     }
 }
