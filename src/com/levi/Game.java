@@ -18,7 +18,7 @@ public class Game {
      * @param boardOne Board of player one.
      * @param boardTwo Board of player two.
      */
-    public Game(Board boardOne, Board boardTwo) {
+    public Game(final Board boardOne, final Board boardTwo) {
         this.boardOne = boardOne;
         this.boardTwo = boardTwo;
     }
@@ -55,7 +55,7 @@ public class Game {
         System.out.println(", enter the location of your shot: ");
         String inputLine = in.nextLine();
 
-        if (inputLine.length() == 0){
+        if (inputLine.length() == 0) {
             return null;
         }
         return inputLine.toLowerCase();

@@ -5,7 +5,7 @@ import com.levi.model.Player;
 
 /**
  * Main, starts the game.
- * @version 3.0
+ * @version 4.0
  * @since 2019
  * @author Levi Rosal
  */
@@ -17,15 +17,16 @@ public class BattleshipApplication {
     public static void main(String[] args) {
         Player playerOne = new Player();
         Player playerTwo = new Player();
+
         for (int i = 0; i < args.length ; i++) {
             if (args[i].substring(0, 10).equals("--p1-name=")) {
-                playerOne.setName(args[i].substring(10, args[i].length()));
+                playerOne.setName(args[i].substring(10));
             } else if (args[i].substring(0, 10).equals("--p1-file=")) {
-                playerOne.setLocFile(args[i].substring(10, args[i].length()));
+                playerOne.setLocFile(args[i].substring(10));
             } else if (args[i].substring(0, 10).equals("--p2-name=")) {
-                playerTwo.setName(args[i].substring(10, args[i].length()));
+                playerTwo.setName(args[i].substring(10));
             } else if (args[i].substring(0, 10).equals("--p2-file=")) {
-                playerTwo.setLocFile(args[i].substring(10, args[i].length()));
+                playerTwo.setLocFile(args[i].substring(10));
             }
         }
         Board boardOne = new Board(playerOne);

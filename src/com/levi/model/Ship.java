@@ -2,10 +2,16 @@ package com.levi.model;
 
 import java.util.List;
 
+/**
+ * Create new ship.
+ * @version 4.0
+ * @since 2019
+ * @author Levi Rosal
+ */
 public class Ship {
     private List<String> locations;
 
-    public Ship(List<String> locations) {
+    public Ship(final List<String> locations) {
         this.locations = locations;
         System.out.println("Ship: " + locations);
     }

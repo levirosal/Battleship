@@ -13,19 +13,23 @@ import java.io.IOException;
  * @author Levi Rosal
  */
 public class Board {
-    private final List<Ship> shipList = new ArrayList<>();
     private static final String ALPHABET = "abcdefg";
     private static final int LINE_LIMIT = 7;
     private static final int COLUMN_LIMIT = 7;
-    private Player player;
+    private final List<Ship> shipList = new ArrayList<>();
+    private final Player player;
 
-    public Board(Player player) {
+    public Board(final Player player) {
         this.player = player;
-        reader(this.player.getLocFile());
+        reader(player.getLocFile());
     }
 
 
-    public void reader(String locFile) {
+    /**
+     * Reads file and create ships.
+     * @param locFile Location of file
+     */
+    public void reader(final String locFile) {
         try {
             String temp;
             List<String> locationsTemp = new ArrayList<>();
@@ -55,7 +59,11 @@ public class Board {
         }
     }
 
-    public String checkShot(final String userInput) {
+    /**
+     * Checks the user's guess and removes the location if the guess is correct.
+     * @param userInput User Guess.
+     */
+    public void checkShot(final String userInput) {
         String result = "miss";
 
         for(Ship ship : shipList) {
@@ -63,17 +71,13 @@ public class Board {
                 result = "hit";
                 ship.removeLocation(userInput);
                 if(ship.getLocations().size() == 0) {
-                    result = "kill";
+                    result = "KILL";
                     shipList.remove(ship);
-                    if (shipList.isEmpty()) {
-                        return "killAll";
-                    }
                     break;
                 }
             }
         }
         System.out.println(result + "\n");
-        return result;
     }
 
     public Player getPlayer() {

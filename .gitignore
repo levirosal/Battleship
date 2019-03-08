@@ -2,6 +2,7 @@
 *.idea
 *.iml
 *.txt
+*.jar
 Battleship/.idea
 Battleship/out
 Battleship/javadoc
