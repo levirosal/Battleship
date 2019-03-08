@@ -10,31 +10,39 @@ import com.levi.model.Player;
  * @author Levi Rosal
  */
 public class BattleshipApplication {
+    private static final Player PLAYER_ONE = new Player();
+    private static final Player PLAYER_TWO = new Player();
 
     /**
-     * Gets names and locations of files, starts and finish the game.
+     * Gets names and locations of files, start and finish the game.
      */
     public static void main(String[] args) {
-        Player playerOne = new Player();
-        Player playerTwo = new Player();
-
         for (int i = 0; i < args.length ; i++) {
-            if (args[i].substring(0, 10).equals("--p1-name=")) {
-                playerOne.setName(args[i].substring(10));
-            } else if (args[i].substring(0, 10).equals("--p1-file=")) {
-                playerOne.setLocFile(args[i].substring(10));
-            } else if (args[i].substring(0, 10).equals("--p2-name=")) {
-                playerTwo.setName(args[i].substring(10));
-            } else if (args[i].substring(0, 10).equals("--p2-file=")) {
-                playerTwo.setLocFile(args[i].substring(10));
-            }
+            setPlayers(args[i]);
         }
-        Board boardOne = new Board(playerOne);
-        Board boardTwo = new Board(playerTwo);
+
+        Board boardOne = new Board(PLAYER_ONE);
+        Board boardTwo = new Board(PLAYER_TWO);
 
         Game game = new Game(boardOne, boardTwo);
-        game.printTable();
+
         Player winner = game.start();
         game.finish(winner);
+    }
+
+    /**
+     * Receives argument and sets name and location of file.
+     * @param arg Argument received when starting the application.
+     */
+    private static void setPlayers(final String arg) {
+        if (arg.substring(0, 10).equals("--p1-name=")) {
+            PLAYER_ONE.setName(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p1-file=")) {
+            PLAYER_ONE.setFileLocation(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p2-name=")) {
+            PLAYER_TWO.setName(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p2-file=")) {
+            PLAYER_TWO.setFileLocation(arg.substring(10));
+        }
     }
 }
