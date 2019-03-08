@@ -21,7 +21,7 @@ Where the columns are the numbers and the lines the letters.
     G *  *  *  *  *  *  *
       0  1  2  3  4  5  6
 
-## How to build this .jar locally.
+## How to build this .jar locally ?
 
 ##### 1. Enter the source directory:
 
@@ -37,7 +37,7 @@ Where the columns are the numbers and the lines the letters.
     jar -cvmf manifest.txt Battleship.jar com/ 
     
 
-## How to start the game.
+## How to start the game ?
 
 ##### 1. Execute the jar by sending these parameters in any order:
 Name of player 1:
