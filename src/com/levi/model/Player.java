@@ -8,22 +8,31 @@ package com.levi.model;
  */
 public class Player {
     private String name;
-    private String locFile;
+    private String fileLocation;
+    private int numOfGuess = 0;
+
+    public int getNumOfGuess() {
+        return numOfGuess;
+    }
+
+    public void addNumOfGuess() {
+        numOfGuess += 1;
+    }
 
     public void setName(final String name) {
         this.name = name;
     }
 
-    public void setLocFile(final String locFile) {
-        this.locFile = locFile;
+    public void setFileLocation(final String fileLocation) {
+        this.fileLocation = fileLocation;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getLocFile() {
-        return locFile;
+    public String getFileLocation() {
+        return fileLocation;
     }
 
 }
