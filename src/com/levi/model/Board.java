@@ -96,54 +96,54 @@ public class Board {
     }
 
     /**
-     * @param i number of line.
-     * @param j number of column.
+     * @param line number of line.
+     * @param column number of column.
      * @return Boolean - Is vertical ship or not.
      */
-    private boolean isVerticalShip(final int i, final int j) {
-        if (i > 5) {
+    private boolean isVerticalShip(final int line, final int column) {
+        if (line > 5) {
             return false;
         }
-        if (j >= 5) {
-            return board [i][j] == 1 && board [i + 1][j] == 1;
+        if (column >= 5) {
+            return board [line][column] == 1 && board [line + 1][column] == 1;
         }
-        return board [i][j] == 1 && board [i][j + 1] != 1 && board [i + 1][j] == 1;
+        return board [line][column] == 1 && board [line][column + 1] != 1 && board [line + 1][column] == 1;
     }
 
     /**
      * Adds the locations of the vertical ships in the ArrayList "locationsTemp" and calls the method to create ships.
-     * @param i number of line.
-     * @param j number of column.
+     * @param line number of line.
+     * @param column number of column.
      */
-    private void verticalShip(final int i, final int j) {
-        for (int k = i ; k <= 6 && board [k][j] == 1 ; k++) {
-            locationsTemp.add(String.valueOf(ALPHABET.charAt(k)).concat(Integer.toString(j)));
-            board[k][j] = 0;
+    private void verticalShip(final int line, final int column) {
+        for (int k = line ; k <= 6 && board [k][column] == 1 ; k++) {
+            locationsTemp.add(String.valueOf(ALPHABET.charAt(k)).concat(Integer.toString(column)));
+            board[k][column] = 0;
         }
         createShip();
     }
 
     /**
-     * @param i number of line.
-     * @param j number of column.
+     * @param line number of line.
+     * @param column number of column.
      * @return Boolean - Is horizontal ship or not.
      */
-    private boolean isHorizontalShip(final int i, final int j) {
-        if (j >= 5) {
+    private boolean isHorizontalShip(final int line, final int column) {
+        if (column >= 5) {
             return false;
         }
-        return board [i][j] == 1;
+        return board [line][column] == 1;
     }
 
     /**
      * Adds the locations of the horizontal ships in the ArrayList "locationsTemp" and calls the method to create ships.
-     * @param i number of line.
-     * @param j number of column.
+     * @param line number of line.
+     * @param column number of column.
      */
-    private void horizontalShip(final int i, final int j) {
-        for (int k = j ; k <= 6 && board [i][k] == 1 ; k++) {
-            locationsTemp.add(String.valueOf(ALPHABET.charAt(i)).concat(Integer.toString(k)));
-            board[i][k] = 0;
+    private void horizontalShip(final int line, final int column) {
+        for (int k = column ; k <= 6 && board [line][k] == 1 ; k++) {
+            locationsTemp.add(String.valueOf(ALPHABET.charAt(line)).concat(Integer.toString(k)));
+            board[line][k] = 0;
         }
         createShip();
     }
