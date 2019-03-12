@@ -23,7 +23,7 @@ public class Board {
 
     public Board(final Player player) {
         this.player = player;
-        reader(player.getFileLocation());
+        readerOfFile(player.getFileLocation());
         readerOfBoard();
     }
 
@@ -31,7 +31,7 @@ public class Board {
      * Reads file and adds locations in the board[][].
      * @param locFile Location of file
      */
-    private void reader(final String locFile) {
+    private void readerOfFile(final String locFile) {
         BufferedReader read = null;
         String lineValue;
         try {
@@ -96,16 +96,18 @@ public class Board {
     }
 
     /**
-     * Adds the locations of the horizontal ships in the ArrayList "locationsTemp" and calls the method to create ships.
      * @param i number of line.
      * @param j number of column.
+     * @return Boolean - Is vertical ship or not.
      */
-    private void horizontalShip(int i, int j) {
-        for (int k = j ; k <= 6 && board [i][k] == 1 ; k++) {
-            locationsTemp.add(String.valueOf(ALPHABET.charAt(i)).concat(Integer.toString(k)));
-            board[i][k] = 0;
+    private boolean isVerticalShip(final int i, final int j) {
+        if (i > 5) {
+            return false;
         }
-        createShip();
+        if (j >= 5) {
+            return board [i][j] == 1 && board [i + 1][j] == 1;
+        }
+        return board [i][j] == 1 && board [i][j + 1] != 1 && board [i + 1][j] == 1;
     }
 
     /**
@@ -113,10 +115,35 @@ public class Board {
      * @param i number of line.
      * @param j number of column.
      */
-    private void verticalShip(int i, int j) {
+    private void verticalShip(final int i, final int j) {
         for (int k = i ; k <= 6 && board [k][j] == 1 ; k++) {
             locationsTemp.add(String.valueOf(ALPHABET.charAt(k)).concat(Integer.toString(j)));
             board[k][j] = 0;
+        }
+        createShip();
+    }
+
+    /**
+     * @param i number of line.
+     * @param j number of column.
+     * @return Boolean - Is horizontal ship or not.
+     */
+    private boolean isHorizontalShip(final int i, final int j) {
+        if (j >= 5) {
+            return false;
+        }
+        return board [i][j] == 1;
+    }
+
+    /**
+     * Adds the locations of the horizontal ships in the ArrayList "locationsTemp" and calls the method to create ships.
+     * @param i number of line.
+     * @param j number of column.
+     */
+    private void horizontalShip(final int i, final int j) {
+        for (int k = j ; k <= 6 && board [i][k] == 1 ; k++) {
+            locationsTemp.add(String.valueOf(ALPHABET.charAt(i)).concat(Integer.toString(k)));
+            board[i][k] = 0;
         }
         createShip();
     }
@@ -129,38 +156,14 @@ public class Board {
         locationsTemp = new ArrayList<>();
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     /**
-     * @param i number of line.
-     * @param j number of column.
-     * @return Boolean - Is vertical ship or not.
+     * @return  Boolean - All ships have been destroyed or not.
      */
-    private boolean isVerticalShip(int i, int j) {
-        if (i > 5) {
-            return false;
-        }
-        if (j >= 5) {
-            return board [i][j] == 1 && board [i + 1][j] == 1;
-        }
-        return board [i][j] == 1 && board [i][j + 1] != 1 && board [i + 1][j] == 1;
-    }
-
-    /**
-     * @param i number of line.
-     * @param j number of column.
-     * @return Boolean - Is horizontal ship or not.
-     */
-    private boolean isHorizontalShip(int i, int j) {
-        if (j >= 5) {
-            return false;
-        }
-        return board [i][j] == 1;
-    }
-
     public boolean isAllShipDestroyed() {
         return shipList.isEmpty();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

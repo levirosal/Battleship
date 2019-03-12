@@ -11,14 +11,6 @@ public class Player {
     private String fileLocation;
     private int numOfGuess = 0;
 
-    public int getNumOfGuess() {
-        return numOfGuess;
-    }
-
-    public void addNumOfGuess() {
-        numOfGuess += 1;
-    }
-
     public void setName(final String name) {
         this.name = name;
     }
@@ -31,8 +23,16 @@ public class Player {
         return name;
     }
 
+    public int getNumOfGuess() {
+        return numOfGuess;
+    }
+
     public String getFileLocation() {
         return fileLocation;
+    }
+
+    public void addNumOfGuess() {
+        numOfGuess += 1;
     }
 
 }
