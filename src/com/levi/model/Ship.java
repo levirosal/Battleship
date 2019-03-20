@@ -13,7 +13,7 @@ public class Ship {
 
     public Ship(final List<String> locations) {
         this.locations = locations;
-//        System.out.println("Ship: " + locations);
+        System.out.println("Ship: " + locations);
     }
 
     public List<String> getLocations() {

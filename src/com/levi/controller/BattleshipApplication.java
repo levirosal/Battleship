@@ -1,7 +1,8 @@
-package com.levi;
+package com.levi.controller;
 
 import com.levi.model.Board;
 import com.levi.model.Player;
+import com.levi.view.PrintsGame;
 
 /**
  * Main, starts the game.
@@ -12,6 +13,7 @@ import com.levi.model.Player;
 public class BattleshipApplication {
     private static final Player PLAYER_ONE = new Player();
     private static final Player PLAYER_TWO = new Player();
+    private static final PrintsGame PRINT = new PrintsGame();
 
     /**
      * Gets names and locations of files, start and finish the game.
@@ -27,7 +29,7 @@ public class BattleshipApplication {
         Game game = new Game(boardOne, boardTwo);
 
         Player winner = game.start();
-        game.finish(winner);
+        PRINT.finish(winner);
     }
 
     /**
