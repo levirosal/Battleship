@@ -1,11 +1,9 @@
 package com.levi.view;
 
 import com.levi.model.*;
-import com.levi.controller.*;
-
 import java.util.Scanner;
 
-public class PrintsGame {
+public class ViewEnglish implements GameView {
     /**
      * Prints Table Game.
      */
@@ -19,6 +17,23 @@ public class PrintsGame {
         System.out.println(" F *  *  *  *  *  *  *");
         System.out.println(" G *  *  *  *  *  *  *");
         System.out.println("   0  1  2  3  4  5  6\n");
+        System.out.println("\n");
+        System.out.println("                         /\\ ");
+        System.out.println("                        /  \\ ");
+        System.out.println("                        \\   \\__");
+        System.out.println("              _          \\   \\o\\ ");
+        System.out.println("             0_|          \\   \\o\\= ");
+        System.out.println("~~~~~~~~~~~~~~||~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("              ||");
+        System.out.println("             / |_  ");
+        System.out.println("   ,--------'    '--------..._,.");
+        System.out.println("  (                          _--+");
+        System.out.println("   `----------------------''' `'");
+        System.out.println("\n");
+    }
+
+    public void printShot(ResultShot resultShot) {
+        System.out.println(resultShot + "\n");
     }
 
     public void printPlayer(final Board board) {

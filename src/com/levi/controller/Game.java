@@ -12,7 +12,7 @@ import com.levi.view.*;
 public class Game {
     private Board boardOne;
     private Board boardTwo;
-    private PrintsGame printsGame;
+    private GameView view;
 
     /**
      * @param boardOne Board of player one.
@@ -21,7 +21,10 @@ public class Game {
     public Game(final Board boardOne, final Board boardTwo) {
         this.boardOne = boardOne;
         this.boardTwo = boardTwo;
-        printsGame = new PrintsGame();
+    }
+
+    public void setView(GameView view) {
+        this.view = view;
     }
 
     /**
@@ -29,17 +32,17 @@ public class Game {
      * @return Player - Winner of the game
      */
     public Player start() {
-        printsGame.printTable();
+        view.printTable();
 
         while (!boardOne.isAllShipDestroyed()) {
-            printsGame.printPlayer(boardOne);
+            view.printPlayer(boardOne);
             play(boardTwo);
 
             if (boardTwo.isAllShipDestroyed()) {
                 return boardOne.getPlayer();
             }
 
-            printsGame.printPlayer(boardTwo);
+            view.printPlayer(boardTwo);
             play(boardOne);
         }
         return boardTwo.getPlayer();
@@ -51,7 +54,11 @@ public class Game {
      */
     private void play(final Board board) {
         String userGuess;
-        userGuess = printsGame.getUserInput();
-        System.out.println(board.checkShot(userGuess) + "\n");
+        ResultShot resultShot;
+
+        userGuess = view.getUserInput();
+        resultShot = board.checkShot(userGuess);
+
+        view.printShot(resultShot);
     }
 }
