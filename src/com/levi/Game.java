@@ -1,116 +1,107 @@
 package com.levi;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import com.levi.model.Board;
+import com.levi.model.Player;
+import java.util.Scanner;
 
 /**
- * Creates ships and reads locations files.
- * @version 3.0
+ * Calls for the creation of ships and requests the user's guess.
+ * @version 4.0
  * @since 2019
  * @author Levi Rosal
  */
 public class Game {
-    private List<String> locations1;
-    private List<String> locations2;
-    private String nameP1;
-    private String nameP2;
-    private static final String alphabet = "abcdefg";
-
+    private Board boardOne;
+    private Board boardTwo;
 
     /**
-     * Sets player and location of ship.
-     * @param name1 Name of player 1.
-     * @param locFile1 Location of ships of player 1.
-     * @param name2 Name of player 2.
-     * @param locFile2 Location of ships of player 2.
+     * @param boardOne Board of player one.
+     * @param boardTwo Board of player two.
      */
-    public Game(String name1, String locFile1, String name2, String locFile2) {
-        locations1 = reader(locFile1);
-        locations2 = reader(locFile2);
-        nameP1 = name1;
-        nameP2 = name2;
-
-//        System.out.println("Location " + nameP1 + ": " + locations1);  // Show locations of ships.
-//        System.out.println("Location " + nameP2 + ": " + locations2);  // Show locations of ships.
+    public Game(final Board boardOne, final Board boardTwo) {
+        this.boardOne = boardOne;
+        this.boardTwo = boardTwo;
     }
 
     /**
-     * Returns locations of player 1 ships.
-     * @return List - List of locations.
+     * Starts the game.
+     * @return Player - Winner of the game
      */
-    public List<String> getLocations1() {
-        return locations1;
-    }
+    public Player start() {
+        printTable();
 
-    /**
-     * Returns locations of player 2 ships.
-     * @return List - List of locations.
-     */
-    public List<String> getLocations2() {
-        return locations2;
-    }
+        while (!boardOne.isAllShipDestroyed()) {
+            System.out.print(boardOne.getPlayer().getName());
+            play(boardTwo);
 
-    /**
-     * Returns name of player 1.
-     * @return String - Name of player 1.
-     */
-    public String getNameP1() {
-        return nameP1;
-    }
-
-    /**
-     * Returns name of player 2.
-     * @return String - Name of player 2.
-     */
-    public String getNameP2() {
-        return nameP2;
-    }
-
-    /**
-     * Reads file and insert locations.
-     * @param file Location of file.
-     * @return List of locations.
-     */
-    public List<String> reader(String file) {
-        List<String> locations = new ArrayList<>();
-        int line = 0;
-        String temp;
-
-        try {
-            FileReader arq = new FileReader(file);
-            BufferedReader lerArq = new BufferedReader(arq);
-
-            String linha = lerArq.readLine();
-            while (linha != null) {
-
-                for (int i = 0; i < linha.length(); i++){
-                    if(linha.charAt(i) == '1'){
-                        temp = String.valueOf(alphabet.charAt(line));
-                        locations.add(temp.concat(Integer.toString(i)));
-                    }
-                }
-                linha = lerArq.readLine();
-                line++;
+            if (boardTwo.isAllShipDestroyed()) {
+                return boardOne.getPlayer();
             }
 
-            arq.close();
-
-        } catch (IOException e) {
-            System.err.println("Error opening file: " + e.getLocalizedMessage());
+            System.out.print(boardTwo.getPlayer().getName());
+            play(boardOne);
         }
+        return boardTwo.getPlayer();
+    }
 
-        return locations;
+    /**
+     * Calls the method to insert your shot and method to check guess.
+     * @param board Board for check guess.
+     */
+    private void play(final Board board) {
+        String userGuess;
+        userGuess = getUserInput();
+        System.out.println(board.checkShot(userGuess) + "\n");
+    }
+
+    /**
+     * Gets guess player.
+     * @return String - Value user guess.
+     */
+    private String getUserInput() {
+        Scanner in = new Scanner(System.in);
+        String inputLine;
+        System.out.print(", enter the location of your shot: ");
+
+        while (true) {
+            inputLine = in.nextLine();
+            if (inputLine.length() > 0) {
+                break;
+            } else {
+                System.out.print("The location of your shot can't be empty.\n" + "\n" + "Enter the location of your shot: ");
+            }
+        }
+        return inputLine.toLowerCase();
+    }
+
+    /**
+     * Prints Table Game.
+     */
+    private void printTable() {
+        System.out.println("\nYour goal is to sink enemy ships.");
+        System.out.println(" A *  *  *  *  *  *  *");
+        System.out.println(" B *  *  *  *  *  *  *");
+        System.out.println(" C *  *  *  *  *  *  *");
+        System.out.println(" D *  *  *  *  *  *  *");
+        System.out.println(" E *  *  *  *  *  *  *");
+        System.out.println(" F *  *  *  *  *  *  *");
+        System.out.println(" G *  *  *  *  *  *  *");
+        System.out.println("   0  1  2  3  4  5  6\n");
     }
 
     /**
      * Shows the result of game.
      */
-    public void finish(final String name) {
+    public void finish(final Player winner) {
         System.out.println("All ships are dead !!!");
-        System.out.println(name + " Wins !!!");
-    }
+        System.out.println(winner.getName() + " Wins !!!");
 
+        if(winner.getNumOfGuess() >= 18) {
+            System.out.println("Took you long enough. " + winner.getNumOfGuess() + " guesses.");
+            System.out.println("The fish are dancing with their shots.");
+            return;
+        }
+
+        System.out.println("It only took you " + winner.getNumOfGuess() + " guesses, congratulations !!!");
+    }
 }

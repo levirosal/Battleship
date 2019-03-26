@@ -1,6 +1,8 @@
 *.class
 *.idea
 *.iml
+*.jar
+*.sh
 *.txt
 Battleship/.idea
 Battleship/out

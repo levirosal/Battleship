@@ -1,23 +1,48 @@
 package com.levi;
 
+import com.levi.model.Board;
+import com.levi.model.Player;
+
 /**
  * Main, starts the game.
- * @version 3.0
+ * @version 4.0
  * @since 2019
  * @author Levi Rosal
  */
 public class BattleshipApplication {
+    private static final Player PLAYER_ONE = new Player();
+    private static final Player PLAYER_TWO = new Player();
+
     /**
-     * Gets names and locations of files and starts the game.
+     * Gets names and locations of files, start and finish the game.
      */
     public static void main(String[] args) {
-        BattleshipLaunch game = new BattleshipLaunch();
-        String nameP1 = args[0].substring(10,(args[0].length()));
-        String locP1 = args[1].substring(10,(args[1].length()));
-        String nameP2 = args[2].substring(10,(args[2].length()));
-        String locP2 = args[3].substring(10,(args[3].length()));
+        for (int i = 0; i < args.length ; i++) {
+            setPlayers(args[i]);
+        }
 
-        game.launch(nameP1, locP1, nameP2, locP2);
-        game.start();
+        Board boardOne = new Board(PLAYER_ONE);
+        Board boardTwo = new Board(PLAYER_TWO);
+
+        Game game = new Game(boardOne, boardTwo);
+
+        Player winner = game.start();
+        game.finish(winner);
+    }
+
+    /**
+     * Receives argument and sets name and location of file.
+     * @param arg Argument received when starting the application.
+     */
+    private static void setPlayers(final String arg) {
+        if (arg.substring(0, 10).equals("--p1-name=")) {
+            PLAYER_ONE.setName(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p1-file=")) {
+            PLAYER_ONE.setFileLocation(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p2-name=")) {
+            PLAYER_TWO.setName(arg.substring(10));
+        } else if (arg.substring(0, 10).equals("--p2-file=")) {
+            PLAYER_TWO.setFileLocation(arg.substring(10));
+        }
     }
 }
