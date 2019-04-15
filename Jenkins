@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('Compile Stage') {
+
+            steps {
+                sh 'javac -d class/com/levi/model/ src/model/*.java'
+                sh 'javac -d class/com/levi/view/ src/view/*.java'
+                sh 'javac -d class/com/levi/controller/ src/controller/*.java'
+            }
+        }
+
+        stage ('Create jar Stage') {
+
+            steps {
+                sh 'jar -cvmf class/manifest.txt Battleship.jar class/'
+            }
+        }
+
+        stage ('Verify Stage') {
+            steps {
+                sh 'ls -lh class/"'
+            }
+        }
+    }
+}
