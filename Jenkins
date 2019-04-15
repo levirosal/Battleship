@@ -2,6 +2,16 @@ pipeline {
     agent any
 
     stages {
+
+        stage ('Create workspace Stage') {
+
+            steps {
+                sh 'mkdir -p class/com/levi/model/'
+                sh 'mkdir -p class/com/levi/view/'
+                sh 'mkdir -p class/com/levi/controller/'
+            }
+        }
+
         stage ('Compile Stage') {
 
             steps {
