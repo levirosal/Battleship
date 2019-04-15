@@ -1,6 +1,8 @@
 package com.levi.view;
 
-import com.levi.model.*;
+import com.levi.model.ResultShot;
+import com.levi.model.Board;
+import com.levi.model.Player;
 
 public interface GameView {
 
