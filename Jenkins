@@ -15,9 +15,9 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                sh 'javac -d class/com/levi/model/ src/com/levi/model/*.java'
-                sh 'javac -d class/com/levi/view/ src/com/levi/view/*.java'
-                sh 'javac -d class/com/levi/controller/ src/com/levi/controller/*.java'
+                sh 'javac -d class/ src/com/levi/model/*.java'
+                sh 'javac -d class/ src/com/levi/controller/*.java'
+                sh 'javac -d class/ src/com/levi/view/*.java'
             }
         }
 
