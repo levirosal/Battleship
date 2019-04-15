@@ -77,16 +77,16 @@ public class Board {
      * @param userInput User Guess.
      * @return String - Result of user's guess.
      */
-    public String checkShot(final String userInput) {
-        String result = "miss";
+    public ResultShot checkShot(final String userInput) {
+        ResultShot result = ResultShot.MISS;
         player.addNumOfGuess();
 
         for(Ship ship : shipList) {
             if(ship.getLocations().contains(userInput)) {
-                result = "hit";
+                result = ResultShot.HIT;
                 ship.removeLocation(userInput);
                 if(ship.getLocations().size() == 0) {
-                    result = "KILL";
+                    result = ResultShot.KILL;
                     shipList.remove(ship);
                     break;
                 }
