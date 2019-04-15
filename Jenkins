@@ -16,8 +16,8 @@ pipeline {
 
             steps {
                 sh 'javac -d class/ src/com/levi/model/*.java'
-                sh 'javac -d class/ src/com/levi/controller/*.java'
                 sh 'javac -d class/ src/com/levi/view/*.java'
+                sh 'javac -d class/ src/com/levi/controller/*.java'
             }
         }
 
